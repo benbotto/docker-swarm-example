@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+  api:
+    image: avejidah/docker-swarm-example-api:1.0.2
+    networks:
+      - frontend
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 3
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  app:
+    image: avejidah/docker-swarm-example-app:1.0.3
+    networks:
+      - frontend
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 3
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  proxy:
+    image: avejidah/docker-swarm-example-proxy:1.0.4
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: ingress
+    networks:
+      - frontend
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+networks:
+  frontend:
+    driver: overlay
+    internal: true

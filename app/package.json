@@ -1,0 +1,16 @@
+{
+  "name": "docker-swarm-example-app",
+  "version": "1.0.3",
+  "description": "Example front-end app for testing docker swarm.",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server src/",
+    "start:prod": "http-server dist/",
+    "build": "mkdir -p dist && cp src/* ./dist/ && mv ./dist/config.prod.js ./dist/config.js"
+  },
+  "author": "Ben Botto",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
