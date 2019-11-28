@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   api:
-    image: avejidah/docker-swarm-example-api:1.0.2
+    image: avejidah/docker-swarm-example-api:1.1.0
     networks:
       - frontend
     deploy:
