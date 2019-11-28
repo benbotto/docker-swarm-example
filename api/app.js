@@ -1,8 +1,9 @@
 async function main() {
-  const cors    = require('cors');
-  const express = require('express');
-  const app     = express();
-  const port    = 3000;
+  const cors      = require('cors');
+  const express   = require('express');
+  const app       = express();
+  const port      = 3000;
+  const startTime = new Date();
 
   let hitCount  = 0;
 
@@ -18,6 +19,7 @@ async function main() {
       protocol:      req.protocol,
       hostname:      req.hostname,
       time:          new Date().toISOString(),
+      startTime:     startTime.toISOString(),
       hitCount:      ++hitCount,
       headers:       req.headers,
       env:           process.env,
